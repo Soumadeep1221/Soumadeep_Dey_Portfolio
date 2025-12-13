@@ -68,7 +68,7 @@
           
           <h1 class="hero-title">Soumadeep Dey</h1>
           
-          <p class="hero-subtitle">Aspiring Java Backend Development | 5-Star Java (HackerRank) | 4-Star Problem Solving (HackerRank)</p>
+          <p class="hero-subtitle" id="typingText">Aspiring Java Backend Development<span class="typing-cursor">|</span></p>
           
           <p class="hero-description">I build efficient backend systems and enjoy solving complex problems through clean Java code.</p>
           
@@ -159,7 +159,67 @@
               <span class="badge">JDBC</span>
               <span class="badge">Hibernate</span>
               <span class="badge">Maven</span>
-              <span class="badge">Spring Framework <span class="learning-box"><span class="live-indicator"></span> Learning</span></span>
+              <div class="spring-framework-container">
+                <span class="badge spring-badge" id="springBadge">
+                  Spring Framework <span class="learning-box" id="springLearningBox"><span class="live-indicator"></span> Learning</span>
+                </span>
+                <div class="spring-dropdown hidden" id="springDropdown">
+                  <div class="spring-checklist">
+                    <label class="spring-checkbox-item">
+                      <input type="checkbox" class="spring-checkbox" value="spring-core">
+                      <span>Spring Core & IoC</span>
+                    </label>
+                    <label class="spring-checkbox-item">
+                      <input type="checkbox" class="spring-checkbox" value="java-config">
+                      <span>Java-based Configuration</span>
+                    </label>
+                    <label class="spring-checkbox-item">
+                      <input type="checkbox" class="spring-checkbox" value="spring-jdbc">
+                      <span>Spring JDBC</span>
+                    </label>
+                    <label class="spring-checkbox-item">
+                      <input type="checkbox" class="spring-checkbox" value="spring-mvc">
+                      <span>Spring MVC</span>
+                    </label>
+                    <label class="spring-checkbox-item">
+                      <input type="checkbox" class="spring-checkbox" value="spring-boot">
+                      <span>Spring Boot</span>
+                    </label>
+                    <label class="spring-checkbox-item">
+                      <input type="checkbox" class="spring-checkbox" value="rest-spring">
+                      <span>REST with Spring Boot</span>
+                    </label>
+                    <label class="spring-checkbox-item">
+                      <input type="checkbox" class="spring-checkbox" value="spring-data-jpa">
+                      <span>Spring Data JPA</span>
+                    </label>
+                    <label class="spring-checkbox-item">
+                      <input type="checkbox" class="spring-checkbox" value="spring-data-rest">
+                      <span>Spring Data REST</span>
+                    </label>
+                    <label class="spring-checkbox-item">
+                      <input type="checkbox" class="spring-checkbox" value="spring-aop">
+                      <span>Spring AOP</span>
+                    </label>
+                    <label class="spring-checkbox-item">
+                      <input type="checkbox" class="spring-checkbox" value="spring-security">
+                      <span>Spring Security</span>
+                    </label>
+                    <label class="spring-checkbox-item">
+                      <input type="checkbox" class="spring-checkbox" value="jwt-oauth">
+                      <span>JWT & OAuth2</span>
+                    </label>
+                    <label class="spring-checkbox-item">
+                      <input type="checkbox" class="spring-checkbox" value="microservices">
+                      <span>Microservices</span>
+                    </label>
+                    <label class="spring-checkbox-item">
+                      <input type="checkbox" class="spring-checkbox" value="spring-ai">
+                      <span>Spring AI</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           
@@ -173,7 +233,87 @@
               <h3>CS Fundamentals</h3>
             </div>
             <div class="skill-badges">
-              <span class="badge">Data Structures & Algorithms <span class="learning-box"><span class="live-indicator"></span> Learning</span></span>
+              <div class="dsa-container">
+                <span class="badge dsa-badge" id="dsaBadge">
+                  Data Structures & Algorithms <span class="learning-box" id="dsaLearningBox"><span class="live-indicator"></span> Learning</span>
+                </span>
+                <div class="dsa-dropdown hidden" id="dsaDropdown">
+                  <div class="dsa-checklist">
+                    <label class="dsa-checkbox-item">
+                      <input type="checkbox" class="dsa-checkbox" value="basics">
+                      <span>Learn the Basics</span>
+                    </label>
+                    <label class="dsa-checkbox-item">
+                      <input type="checkbox" class="dsa-checkbox" value="sorting">
+                      <span>Learn Important Sorting Techniques</span>
+                    </label>
+                    <label class="dsa-checkbox-item">
+                      <input type="checkbox" class="dsa-checkbox" value="arrays">
+                      <span>Solve Problems on Arrays</span>
+                    </label>
+                    <label class="dsa-checkbox-item">
+                      <input type="checkbox" class="dsa-checkbox" value="binary-search">
+                      <span>Binary Search</span>
+                    </label>
+                    <label class="dsa-checkbox-item">
+                      <input type="checkbox" class="dsa-checkbox" value="strings-easy">
+                      <span>Strings (Easy & Medium)</span>
+                    </label>
+                    <label class="dsa-checkbox-item">
+                      <input type="checkbox" class="dsa-checkbox" value="linked-list">
+                      <span>Linked List</span>
+                    </label>
+                    <label class="dsa-checkbox-item">
+                      <input type="checkbox" class="dsa-checkbox" value="recursion">
+                      <span>Recursion</span>
+                    </label>
+                    <label class="dsa-checkbox-item">
+                      <input type="checkbox" class="dsa-checkbox" value="bit-manipulation">
+                      <span>Bit Manipulation</span>
+                    </label>
+                    <label class="dsa-checkbox-item">
+                      <input type="checkbox" class="dsa-checkbox" value="stack-queue">
+                      <span>Stack and Queue</span>
+                    </label>
+                    <label class="dsa-checkbox-item">
+                      <input type="checkbox" class="dsa-checkbox" value="sliding-window">
+                      <span>Sliding Window & Two Pointers</span>
+                    </label>
+                    <label class="dsa-checkbox-item">
+                      <input type="checkbox" class="dsa-checkbox" value="heaps">
+                      <span>Heaps</span>
+                    </label>
+                    <label class="dsa-checkbox-item">
+                      <input type="checkbox" class="dsa-checkbox" value="greedy">
+                      <span>Greedy Algorithms</span>
+                    </label>
+                    <label class="dsa-checkbox-item">
+                      <input type="checkbox" class="dsa-checkbox" value="binary-trees">
+                      <span>Binary Trees</span>
+                    </label>
+                    <label class="dsa-checkbox-item">
+                      <input type="checkbox" class="dsa-checkbox" value="bst">
+                      <span>Binary Search Trees</span>
+                    </label>
+                    <label class="dsa-checkbox-item">
+                      <input type="checkbox" class="dsa-checkbox" value="graphs">
+                      <span>Graphs</span>
+                    </label>
+                    <label class="dsa-checkbox-item">
+                      <input type="checkbox" class="dsa-checkbox" value="dp">
+                      <span>Dynamic Programming</span>
+                    </label>
+                    <label class="dsa-checkbox-item">
+                      <input type="checkbox" class="dsa-checkbox" value="tries">
+                      <span>Tries</span>
+                    </label>
+                    <label class="dsa-checkbox-item">
+                      <input type="checkbox" class="dsa-checkbox" value="strings-hard">
+                      <span>String (Hard)</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           
@@ -683,20 +823,47 @@
           </div>
           
           <div class="contact-form-card">
+            <div class="form-header">
+              <div class="form-header-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                </svg>
+              </div>
+              <h3>Send me a message</h3>
+              <p>I'd love to hear from you! Fill out the form below and I'll get back to you as soon as possible.</p>
+            </div>
             <form id="contactForm" class="contact-form" data-endpoint="https://formspree.io/f/mblnqyjp">
               <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Your name" required>
+                <label for="name">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  Your Name
+                </label>
+                <input type="text" id="name" name="name" placeholder="John Doe" required>
               </div>
               <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                <label for="email">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                  </svg>
+                  Your Email
+                </label>
+                <input type="email" id="email" name="email" placeholder="john.doe@example.com" required>
               </div>
               <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="4" placeholder="Your message..." required></textarea>
+                <label for="message">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                  </svg>
+                  Your Message
+                </label>
+                <textarea id="message" name="message" rows="5" placeholder="Tell me about your project, collaboration idea, or just say hello! I'm excited to hear from you." required></textarea>
               </div>
-              <button type="submit" class="btn btn-primary btn-full">
+              <button type="submit" class="btn btn-primary btn-full form-submit-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="m22 2-7 20-4-9-9-4Z"></path>
                   <path d="M22 2 11 13"></path>

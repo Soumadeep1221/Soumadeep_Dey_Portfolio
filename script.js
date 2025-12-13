@@ -12,6 +12,29 @@
     // Set current year
     yearSpan.textContent = new Date().getFullYear();
 
+    // Typing animation for hero subtitle
+    const typingText = document.getElementById("typingText");
+    if (typingText) {
+      const fullText = "Aspiring Java Backend Development";
+      typingText.textContent = "";
+      typingText.innerHTML = '<span class="typing-cursor">|</span>';
+      
+      let charIndex = 0;
+      const typingSpeed = 100; // milliseconds per character
+      
+      function typeText() {
+        if (charIndex < fullText.length) {
+          const currentText = fullText.substring(0, charIndex + 1);
+          typingText.innerHTML = currentText + '<span class="typing-cursor">|</span>';
+          charIndex++;
+          setTimeout(typeText, typingSpeed);
+        }
+      }
+      
+      // Start typing animation after a short delay
+      setTimeout(typeText, 500);
+    }
+
     // Header scroll effect
     window.addEventListener("scroll", function() {
       if (window.scrollY > 50) {
@@ -113,3 +136,91 @@
         }
       });
     });
+
+    // Spring Framework dropdown and checkbox logic
+    const springBadge = document.getElementById("springBadge");
+    const springDropdown = document.getElementById("springDropdown");
+    const springLearningBox = document.getElementById("springLearningBox");
+    const springCheckboxes = document.querySelectorAll(".spring-checkbox");
+
+    // Data Structures & Algorithms dropdown and checkbox logic
+    const dsaBadge = document.getElementById("dsaBadge");
+    const dsaDropdown = document.getElementById("dsaDropdown");
+    const dsaLearningBox = document.getElementById("dsaLearningBox");
+    const dsaCheckboxes = document.querySelectorAll(".dsa-checkbox");
+
+    // Toggle Spring dropdown
+    if (springBadge && springDropdown) {
+      springBadge.addEventListener("click", function(e) {
+        e.stopPropagation();
+        springDropdown.classList.toggle("hidden");
+        // Close DSA dropdown if open
+        if (dsaDropdown) dsaDropdown.classList.add("hidden");
+      });
+    }
+
+    // Toggle DSA dropdown
+    if (dsaBadge && dsaDropdown) {
+      dsaBadge.addEventListener("click", function(e) {
+        e.stopPropagation();
+        dsaDropdown.classList.toggle("hidden");
+        // Close Spring dropdown if open
+        if (springDropdown) springDropdown.classList.add("hidden");
+      });
+    }
+
+    // Close dropdowns when clicking outside
+    document.addEventListener("click", function(e) {
+      if (springBadge && springDropdown && !springBadge.contains(e.target) && !springDropdown.contains(e.target)) {
+        springDropdown.classList.add("hidden");
+      }
+      if (dsaBadge && dsaDropdown && !dsaBadge.contains(e.target) && !dsaDropdown.contains(e.target)) {
+        dsaDropdown.classList.add("hidden");
+      }
+    });
+
+    // Check all checkboxes logic
+    function checkAllSpringCompleted() {
+      if (!springCheckboxes.length) return;
+      
+      const allChecked = Array.from(springCheckboxes).every(cb => cb.checked);
+      
+      if (allChecked) {
+        // All checked - remove learning box, add green checkmark
+        springBadge.classList.add("completed");
+      } else {
+        // Not all checked - show learning box, remove checkmark
+        springBadge.classList.remove("completed");
+      }
+    }
+
+    // Add event listeners to all checkboxes
+    springCheckboxes.forEach(function(checkbox) {
+      checkbox.addEventListener("change", checkAllSpringCompleted);
+    });
+
+    // Initial check
+    checkAllSpringCompleted();
+
+    // Check all checkboxes logic
+    function checkAllDSACompleted() {
+      if (!dsaCheckboxes.length) return;
+      
+      const allChecked = Array.from(dsaCheckboxes).every(cb => cb.checked);
+      
+      if (allChecked) {
+        // All checked - remove learning box
+        dsaBadge.classList.add("completed");
+      } else {
+        // Not all checked - show learning box
+        dsaBadge.classList.remove("completed");
+      }
+    }
+
+    // Add event listeners to all checkboxes
+    dsaCheckboxes.forEach(function(checkbox) {
+      checkbox.addEventListener("change", checkAllDSACompleted);
+    });
+
+    // Initial check
+    checkAllDSACompleted();
