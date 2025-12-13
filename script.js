@@ -142,12 +142,26 @@
     const springDropdown = document.getElementById("springDropdown");
     const springLearningBox = document.getElementById("springLearningBox");
     const springCheckboxes = document.querySelectorAll(".spring-checkbox");
+    // Load saved Spring checkbox states from localStorage
+    const springSaved = JSON.parse(localStorage.getItem("springSelections") || "{}");
+    springCheckboxes.forEach(cb => {
+      if (springSaved.hasOwnProperty(cb.value)) {
+        cb.checked = !!springSaved[cb.value];
+      }
+    });
 
     // Data Structures & Algorithms dropdown and checkbox logic
     const dsaBadge = document.getElementById("dsaBadge");
     const dsaDropdown = document.getElementById("dsaDropdown");
     const dsaLearningBox = document.getElementById("dsaLearningBox");
     const dsaCheckboxes = document.querySelectorAll(".dsa-checkbox");
+    // Load saved DSA checkbox states from localStorage
+    const dsaSaved = JSON.parse(localStorage.getItem("dsaSelections") || "{}");
+    dsaCheckboxes.forEach(cb => {
+      if (dsaSaved.hasOwnProperty(cb.value)) {
+        cb.checked = !!dsaSaved[cb.value];
+      }
+    });
 
     // Toggle Spring dropdown
     if (springBadge && springDropdown) {
@@ -196,7 +210,13 @@
 
     // Add event listeners to all checkboxes
     springCheckboxes.forEach(function(checkbox) {
-      checkbox.addEventListener("change", checkAllSpringCompleted);
+      checkbox.addEventListener("change", function() {
+        // Persist Spring checkbox state
+        const saved = JSON.parse(localStorage.getItem("springSelections") || "{}");
+        saved[checkbox.value] = checkbox.checked;
+        localStorage.setItem("springSelections", JSON.stringify(saved));
+        checkAllSpringCompleted();
+      });
     });
 
     // Initial check
@@ -219,7 +239,13 @@
 
     // Add event listeners to all checkboxes
     dsaCheckboxes.forEach(function(checkbox) {
-      checkbox.addEventListener("change", checkAllDSACompleted);
+      checkbox.addEventListener("change", function() {
+        // Persist DSA checkbox state
+        const saved = JSON.parse(localStorage.getItem("dsaSelections") || "{}");
+        saved[checkbox.value] = checkbox.checked;
+        localStorage.setItem("dsaSelections", JSON.stringify(saved));
+        checkAllDSACompleted();
+      });
     });
 
     // Initial check

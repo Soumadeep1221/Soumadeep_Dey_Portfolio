@@ -1,4 +1,4 @@
-    *,
+*,
     *::before,
     *::after {
       box-sizing: border-box;
@@ -1016,15 +1016,7 @@
     }
 
     .form-header-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.05));
-      color: var(--primary);
-      margin-bottom: 1rem;
+      display: none;
     }
 
     .form-header h3 {
@@ -1099,7 +1091,8 @@
 
     .form-group textarea {
       resize: vertical;
-      min-height: 120px;
+      height: 100px;
+      min-height: 80px;
     }
 
     .form-submit-btn {
