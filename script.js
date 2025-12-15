@@ -12,27 +12,93 @@
     // Set current year
     yearSpan.textContent = new Date().getFullYear();
 
-    // Typing animation for hero subtitle
-    const typingText = document.getElementById("typingText");
-    if (typingText) {
-      const fullText = "Aspiring Java Backend Development";
-      typingText.textContent = "";
-      typingText.innerHTML = '<span class="typing-cursor">|</span>';
-      
-      let charIndex = 0;
-      const typingSpeed = 100; // milliseconds per character
-      
-      function typeText() {
-        if (charIndex < fullText.length) {
-          const currentText = fullText.substring(0, charIndex + 1);
-          typingText.innerHTML = currentText + '<span class="typing-cursor">|</span>';
-          charIndex++;
-          setTimeout(typeText, typingSpeed);
+    // Add animation classes to cards on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
         }
+      });
+    }, observerOptions);
+
+    // Observe all cards for animation
+    document.querySelectorAll('.card, .project-card, .achievement-card, .cert-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+      observer.observe(el);
+    });
+
+    // Professional typing animation for animated skills display
+    const animatedSkills = document.getElementById("animatedSkills");
+    if (animatedSkills) {
+      const skills = [
+        "Core & Advance Java",
+        "Object-Oriented Programming (OOP)",
+        "JDBC & Maven",
+        "Spring Core (IoC & Dependency Injection)",
+        "Spring MVC",
+        "RESTful APIs",
+        "Spring Data JPA",
+        "Hibernate ORM",
+        "Spring Security",
+        "Aspect-Oriented Programming (AOP)",
+        "Docker & Microservices Basics",
+        "Spring Boot Web"
+      ];
+      
+      let currentSkillIndex = 0;
+      const typingSpeed = 80; // milliseconds per character
+      const deleteSpeed = 50; // milliseconds per character when deleting
+      const delayBetweenSkills = 2000; // milliseconds before switching to next skill
+      const initialDelay = 800; // milliseconds before starting
+      
+      function typeSkill(skillIndex) {
+        const skill = skills[skillIndex];
+        let charIndex = 0;
+        
+        function type() {
+          if (charIndex < skill.length) {
+            animatedSkills.innerHTML = skill.substring(0, charIndex + 1) + '<span class="typing-cursor">|</span>';
+            charIndex++;
+            setTimeout(type, typingSpeed);
+          } else {
+            // Skill typing complete, wait before deleting
+            setTimeout(() => deleteSkill(skillIndex), delayBetweenSkills);
+          }
+        }
+        
+        type();
       }
       
-      // Start typing animation after a short delay
-      setTimeout(typeText, 500);
+      function deleteSkill(skillIndex) {
+        const skill = skills[skillIndex];
+        let charIndex = skill.length;
+        
+        function deleteChar() {
+          if (charIndex > 0) {
+            animatedSkills.innerHTML = skill.substring(0, charIndex - 1) + '<span class="typing-cursor">|</span>';
+            charIndex--;
+            setTimeout(deleteChar, deleteSpeed);
+          } else {
+            // Deletion complete, move to next skill
+            const nextSkillIndex = (skillIndex + 1) % skills.length;
+            setTimeout(() => typeSkill(nextSkillIndex), 200);
+          }
+        }
+        
+        deleteChar();
+      }
+      
+      // Start typing animation after initial delay
+      setTimeout(() => typeSkill(0), initialDelay);
     }
 
     // Header scroll effect

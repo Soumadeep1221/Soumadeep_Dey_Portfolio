@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -56,6 +57,11 @@
   <main>
     <!-- Hero Section -->
     <section id="home" class="hero">
+      <div class="floating-orb orb-1"></div>
+      <div class="floating-orb orb-2"></div>
+      <div class="floating-orb orb-3"></div>
+      <div class="floating-orb orb-4"></div>
+      <div class="floating-orb orb-5"></div>
       <div class="container">
         <div class="hero-content">
           <div class="location">
@@ -68,7 +74,10 @@
           
           <h1 class="hero-title">Soumadeep Dey</h1>
           
-          <p class="hero-subtitle" id="typingText">Aspiring Java Backend Development<span class="typing-cursor">|</span></p>
+          <div class="hero-role-section">
+            <h2 class="hero-role">Java Backend Developer</h2>
+            <p class="hero-skills-line" id="animatedSkills"><span class="typing-cursor">|</span></p>
+          </div>
           
           <p class="hero-description">I build efficient backend systems and enjoy solving complex problems through clean Java code.</p>
           
@@ -155,13 +164,13 @@
               <h3>Backend</h3>
             </div>
             <div class="skill-badges">
-              <span class="badge">Java</span>
-              <span class="badge">JDBC</span>
-              <span class="badge">Hibernate</span>
-              <span class="badge">Maven</span>
+              <span class="badge"><i class="devicon-java-plain" aria-hidden="true"></i> Java</span>
+              <span class="badge"><svg class="skill-logo" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5V19A9 3 0 0 0 21 19V5"></path><path d="M3 12A9 3 0 0 0 21 12"></path></svg> JDBC</span>
+              <span class="badge"><i class="devicon-hibernate-plain" aria-hidden="true"></i> Hibernate</span>
+              <span class="badge"><i class="devicon-maven-plain" aria-hidden="true"></i> Maven</span>
               <div class="spring-framework-container">
                 <span class="badge spring-badge" id="springBadge">
-                  Spring Framework <span class="learning-box" id="springLearningBox"><span class="live-indicator"></span> Learning</span>
+                  <i class="devicon-spring-plain" aria-hidden="true"></i> Spring Framework <span class="learning-box" id="springLearningBox"><span class="live-indicator"></span> Learning</span>
                 </span>
                 <div class="spring-dropdown hidden" id="springDropdown">
                   <div class="spring-checklist">
@@ -235,7 +244,7 @@
             <div class="skill-badges">
               <div class="dsa-container">
                 <span class="badge dsa-badge" id="dsaBadge">
-                  Data Structures & Algorithms <span class="learning-box" id="dsaLearningBox"><span class="live-indicator"></span> Learning</span>
+                  <svg class="skill-logo" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18"></path><path d="M5 11h14"></path><path d="M7 15h10"></path><path d="M9 19h6"></path></svg> Data Structures & Algorithms <span class="learning-box" id="dsaLearningBox"><span class="live-indicator"></span> Learning</span>
                 </span>
                 <div class="dsa-dropdown hidden" id="dsaDropdown">
                   <div class="dsa-checklist">
@@ -325,8 +334,8 @@
               <h3>Tools</h3>
             </div>
             <div class="skill-badges">
-              <span class="badge">Git</span>
-              <span class="badge">GitHub</span>
+              <span class="badge"><i class="devicon-git-plain" aria-hidden="true"></i> Git</span>
+              <span class="badge"><i class="devicon-github-original" aria-hidden="true"></i> GitHub</span>
             </div>
           </div>
           
