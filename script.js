@@ -401,8 +401,9 @@
 
     // Visitor Counter
     async function updateVisitorCount() {
-      const counterId = 'soumadeep-dey-portfolio-vercel';
-      const apiUrl = `https://api.countapi.xyz/hit/soumadeep-dey-portfolio/${counterId}`;
+      const namespace = 'soumadeep-dey-portfolio';
+      const key = 'visits';
+      const apiUrl = `https://api.countapi.xyz/hit/${namespace}/${key}`;
       const visitCount = document.getElementById('visitCount');
       
       // Start animated dots
@@ -415,7 +416,17 @@
       }, 400);
       
       try {
-        const response = await fetch(apiUrl);
+        const response = await fetch(apiUrl, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error(`API responded with status: ${response.status}`);
+        }
+        
         const data = await response.json();
         clearInterval(dotInterval);
         if (visitCount) {
