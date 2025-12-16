@@ -398,3 +398,39 @@
 
     // Initialize certification slideshow
     initializeCertDots();
+
+    // Visitor Counter
+    async function updateVisitorCount() {
+      const counterId = 'soumadeep-dey-portfolio-vercel';
+      const apiUrl = `https://api.countapi.xyz/hit/soumadeep-dey-portfolio/${counterId}`;
+      const visitCount = document.getElementById('visitCount');
+      
+      // Start animated dots
+      let dotCount = 1;
+      const dotInterval = setInterval(() => {
+        if (visitCount) {
+          visitCount.textContent = '.'.repeat(dotCount);
+          dotCount = dotCount === 4 ? 1 : dotCount + 1;
+        }
+      }, 400);
+      
+      try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        clearInterval(dotInterval);
+        if (visitCount) {
+          visitCount.textContent = data.value.toLocaleString();
+          visitCount.classList.remove('loading-dots');
+        }
+      } catch (error) {
+        console.error('Error fetching visitor count:', error);
+        clearInterval(dotInterval);
+        if (visitCount) {
+          visitCount.textContent = '0';
+          visitCount.classList.remove('loading-dots');
+        }
+      }
+    }
+
+    // Call visitor counter on page load
+    updateVisitorCount();
