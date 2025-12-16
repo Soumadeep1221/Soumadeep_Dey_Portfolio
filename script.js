@@ -401,9 +401,6 @@
 
     // Visitor Counter
     async function updateVisitorCount() {
-      const namespace = 'soumadeep-dey-portfolio';
-      const key = 'visits';
-      const apiUrl = `https://api.countapi.xyz/hit/${namespace}/${key}`;
       const visitCount = document.getElementById('visitCount');
       
       // Start animated dots
@@ -416,8 +413,13 @@
       }, 400);
       
       try {
+        // Using a more reliable endpoint with CORS support
+        const apiUrl = 'https://api.countapi.xyz/hit/soumadeepdeypf.com/visits';
+        
         const response = await fetch(apiUrl, {
           method: 'GET',
+          mode: 'cors',
+          cache: 'no-store',
           headers: {
             'Accept': 'application/json'
           }
@@ -428,17 +430,35 @@
         }
         
         const data = await response.json();
+        console.log('Visitor count data:', data);
         clearInterval(dotInterval);
-        if (visitCount) {
+        if (visitCount && data.value) {
           visitCount.textContent = data.value.toLocaleString();
           visitCount.classList.remove('loading-dots');
+        } else {
+          throw new Error('Invalid response data');
         }
       } catch (error) {
         console.error('Error fetching visitor count:', error);
         clearInterval(dotInterval);
-        if (visitCount) {
-          visitCount.textContent = '0';
-          visitCount.classList.remove('loading-dots');
+        
+        // Fallback: try alternative endpoint
+        try {
+          const fallbackUrl = 'https://count.getloli.com/hit/soumadeepdeypf';
+          const fallbackResponse = await fetch(fallbackUrl);
+          if (fallbackResponse.ok) {
+            const fallbackData = await fallbackResponse.text();
+            if (visitCount) {
+              visitCount.textContent = fallbackData || '1';
+              visitCount.classList.remove('loading-dots');
+            }
+          }
+        } catch (fallbackError) {
+          console.error('Fallback also failed:', fallbackError);
+          if (visitCount) {
+            visitCount.textContent = '0';
+            visitCount.classList.remove('loading-dots');
+          }
         }
       }
     }
