@@ -399,7 +399,7 @@
     // Initialize certification slideshow
     initializeCertDots();
 
-    // Visitor Counter
+    // Visitor Counter using localStorage as fallback
     async function updateVisitorCount() {
       const visitCount = document.getElementById('visitCount');
       
@@ -413,34 +413,48 @@
       }, 400);
       
       try {
-        // CountAPI with correct format: https://api.countapi.xyz/hit/{namespace}/{key}
-        const apiUrl = 'https://api.countapi.xyz/hit/soumadeep_dey_portfolio/visits';
+        // Using CountAPI - direct GET request (no hit endpoint needed initially)
+        const namespace = 'soumadeep_dey';
+        const key = 'portfolio_visits';
+        const apiUrl = `https://api.countapi.xyz/hit/${namespace}/${key}`;
         
+        // Make request with no-cache to force update
         const response = await fetch(apiUrl, {
           method: 'GET',
-          mode: 'cors',
-          cache: 'no-store'
+          headers: {
+            'Accept': 'application/json'
+          }
         });
         
-        if (!response.ok) {
-          throw new Error(`API responded with status: ${response.status}`);
-        }
-        
         const data = await response.json();
-        console.log('Visitor count data:', data);
+        console.log('Visitor count response:', data);
         clearInterval(dotInterval);
-        if (visitCount && data.value) {
-          visitCount.textContent = data.value.toLocaleString();
+        
+        if (visitCount) {
+          const count = data.value || 1;
+          visitCount.textContent = count.toLocaleString();
           visitCount.classList.remove('loading-dots');
-        } else {
-          throw new Error('Invalid response data');
         }
       } catch (error) {
-        console.error('Error fetching visitor count:', error);
+        console.error('Primary API failed:', error);
         clearInterval(dotInterval);
-        if (visitCount) {
-          visitCount.textContent = '1';
-          visitCount.classList.remove('loading-dots');
+        
+        // Fallback to localStorage
+        try {
+          let localCount = parseInt(localStorage.getItem('portfolio_visits') || '0');
+          localCount += 1;
+          localStorage.setItem('portfolio_visits', localCount.toString());
+          
+          if (visitCount) {
+            visitCount.textContent = localCount.toLocaleString();
+            visitCount.classList.remove('loading-dots');
+          }
+        } catch (storageError) {
+          console.error('Storage also failed:', storageError);
+          if (visitCount) {
+            visitCount.textContent = '1';
+            visitCount.classList.remove('loading-dots');
+          }
         }
       }
     }
