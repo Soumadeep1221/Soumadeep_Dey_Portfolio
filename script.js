@@ -40,23 +40,27 @@
     const animatedSkills = document.getElementById("animatedSkills");
     if (animatedSkills) {
       const skills = [
-        "Core & Advance Java",
-        "Object-Oriented Programming (OOP)",
-        "JDBC & Maven",
-        "Spring Core (IoC & Dependency Injection)",
+        "Core Java",
+        "Advance Java",
+        "JDBC",
+        "Hibernate ORM",
+        "Spring Core",
+        "Spring JDBC",
+        "Spring Boot Web",
         "Spring MVC",
         "RESTful APIs",
         "Spring Data JPA",
-        "Hibernate ORM",
+        "Spring AOP",
         "Spring Security",
-        "Aspect-Oriented Programming (AOP)",
-        "Docker & Microservices Basics",
-        "Spring Boot Web"
+        "JWT & OAuth2",
+        "Docker",
+        "Spring AI",
+        "Microservices Basics"
       ];
       
       let currentSkillIndex = 0;
       const typingSpeed = 80; // milliseconds per character
-      const deleteSpeed = 50; // milliseconds per character when deleting
+      const deleteSpeed = 60; // milliseconds per character when deleting
       const delayBetweenSkills = 2000; // milliseconds before switching to next skill
       const initialDelay = 800; // milliseconds before starting
       
@@ -316,3 +320,81 @@
 
     // Initial check
     checkAllDSACompleted();
+
+    // ============================================
+    // Certification Slideshow Functionality
+    // ============================================
+    const certSlides = document.querySelectorAll('.cert-slide');
+    const certDotsContainer = document.getElementById('certDots');
+    const certPrevBtn = document.getElementById('certPrevBtn');
+    const certNextBtn = document.getElementById('certNextBtn');
+    const certLinks = document.querySelectorAll('.cert-link');
+    let currentCertIndex = 0;
+
+    // Initialize dots
+    function initializeCertDots() {
+      certSlides.forEach((_, index) => {
+        const dot = document.createElement('button');
+        dot.classList.add('cert-dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => showCertSlide(index));
+        certDotsContainer.appendChild(dot);
+      });
+    }
+
+    // Show specific certificate slide
+    function showCertSlide(index) {
+      if (index < 0) {
+        currentCertIndex = certSlides.length - 1;
+      } else if (index >= certSlides.length) {
+        currentCertIndex = 0;
+      } else {
+        currentCertIndex = index;
+      }
+
+      // Update slides
+      certSlides.forEach((slide, idx) => {
+        slide.classList.remove('active');
+        if (idx === currentCertIndex) {
+          slide.classList.add('active');
+        }
+      });
+
+      // Update dots
+      document.querySelectorAll('.cert-dot').forEach((dot, idx) => {
+        dot.classList.remove('active');
+        if (idx === currentCertIndex) {
+          dot.classList.add('active');
+        }
+      });
+    }
+
+    // Next button
+    if (certNextBtn) {
+      certNextBtn.addEventListener('click', () => {
+        showCertSlide(currentCertIndex + 1);
+      });
+    }
+
+    // Previous button
+    if (certPrevBtn) {
+      certPrevBtn.addEventListener('click', () => {
+        showCertSlide(currentCertIndex - 1);
+      });
+    }
+
+    // Certificate link click handler
+    certLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const pdfFile = link.getAttribute('data-pdf');
+        if (pdfFile) {
+          // Open the PDF file
+          // Make sure to replace the path with your actual PDF location
+          window.open(pdfFile, '_blank');
+        }
+      });
+    });
+
+    // Initialize certification slideshow
+    initializeCertDots();
