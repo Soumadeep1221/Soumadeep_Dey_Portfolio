@@ -413,16 +413,13 @@
       }, 400);
       
       try {
-        // Using a more reliable endpoint with CORS support
-        const apiUrl = 'https://api.countapi.xyz/hit/soumadeepdeypf.com/visits';
+        // CountAPI with correct format: https://api.countapi.xyz/hit/{namespace}/{key}
+        const apiUrl = 'https://api.countapi.xyz/hit/soumadeep_dey_portfolio/visits';
         
         const response = await fetch(apiUrl, {
           method: 'GET',
           mode: 'cors',
-          cache: 'no-store',
-          headers: {
-            'Accept': 'application/json'
-          }
+          cache: 'no-store'
         });
         
         if (!response.ok) {
@@ -441,24 +438,9 @@
       } catch (error) {
         console.error('Error fetching visitor count:', error);
         clearInterval(dotInterval);
-        
-        // Fallback: try alternative endpoint
-        try {
-          const fallbackUrl = 'https://count.getloli.com/hit/soumadeepdeypf';
-          const fallbackResponse = await fetch(fallbackUrl);
-          if (fallbackResponse.ok) {
-            const fallbackData = await fallbackResponse.text();
-            if (visitCount) {
-              visitCount.textContent = fallbackData || '1';
-              visitCount.classList.remove('loading-dots');
-            }
-          }
-        } catch (fallbackError) {
-          console.error('Fallback also failed:', fallbackError);
-          if (visitCount) {
-            visitCount.textContent = '0';
-            visitCount.classList.remove('loading-dots');
-          }
+        if (visitCount) {
+          visitCount.textContent = '1';
+          visitCount.classList.remove('loading-dots');
         }
       }
     }
