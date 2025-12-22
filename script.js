@@ -461,3 +461,92 @@
 
     // Call visitor counter on page load
     updateVisitorCount();
+
+    // Skill badge descriptions (tooltip)
+    (function() {
+      const badges = document.querySelectorAll('.skill-badges .badge');
+      if (!badges.length) return;
+      
+      let tooltipEl = null;
+      
+      function ensureTooltip() {
+        if (tooltipEl) return tooltipEl;
+        tooltipEl = document.createElement('div');
+        tooltipEl.className = 'skill-tooltip hidden';
+        tooltipEl.setAttribute('role', 'tooltip');
+        document.body.appendChild(tooltipEl);
+        return tooltipEl;
+      }
+      
+      function hideTooltip() {
+        if (tooltipEl) {
+          tooltipEl.classList.add('hidden');
+          tooltipEl.innerHTML = '';
+        }
+      }
+      
+      function showTooltip(target, html) {
+        const tip = ensureTooltip();
+        tip.innerHTML = html;
+        tip.classList.remove('hidden');
+        
+        const rect = target.getBoundingClientRect();
+        const tipRect = tip.getBoundingClientRect();
+        const padding = 8;
+        
+        let top = rect.bottom + padding + window.scrollY;
+        let left = rect.left + (rect.width / 2) - (tipRect.width / 2) + window.scrollX;
+        
+        if (top + tipRect.height > window.scrollY + window.innerHeight) {
+          top = rect.top - tipRect.height - padding + window.scrollY;
+        }
+        if (left < window.scrollX + padding) {
+          left = window.scrollX + padding;
+        }
+        if (left + tipRect.width > window.scrollX + window.innerWidth - padding) {
+          left = window.scrollX + window.innerWidth - tipRect.width - padding;
+        }
+        
+        tip.style.top = `${top}px`;
+        tip.style.left = `${left}px`;
+      }
+      
+      badges.forEach(badge => {
+        const isSpring = badge.id === 'springBadge';
+        const isDSA = badge.id === 'dsaBadge';
+        const desc = badge.getAttribute('data-description');
+        if (!desc || isSpring || isDSA) return;
+        
+        function buildHeadingHTML() {
+          const icon = badge.querySelector('i, svg');
+          let name = badge.textContent.trim();
+          name = name.replace(/\s+Learning.*$/i, '').trim();
+          const iconHTML = icon ? icon.outerHTML : '';
+          return `<div class="skill-tooltip-header">${iconHTML}<span class="skill-tooltip-title">${name}</span></div>`;
+        }
+        
+        badge.setAttribute('tabindex', '0');
+        badge.setAttribute('role', 'button');
+        badge.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const html = buildHeadingHTML() + `<div class="skill-tooltip-body">${desc}</div>`;
+          showTooltip(badge, html);
+        });
+        badge.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const html = buildHeadingHTML() + `<div class="skill-tooltip-body">${desc}</div>`;
+            showTooltip(badge, html);
+          }
+          if (e.key === 'Escape') {
+            hideTooltip();
+          }
+        });
+      });
+      
+      document.addEventListener('click', (e) => {
+        if (tooltipEl && !tooltipEl.contains(e.target)) hideTooltip();
+      });
+      window.addEventListener('scroll', hideTooltip, { passive: true });
+      window.addEventListener('resize', hideTooltip);
+    })();

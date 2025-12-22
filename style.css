@@ -757,7 +757,7 @@
       border: 1px solid rgba(16, 185, 129, 0.3);
       border-radius: var(--radius);
       transition: var(--transition);
-      cursor: default;
+      cursor: pointer;
       color: var(--foreground);
       font-weight: 500;
     }
@@ -792,6 +792,49 @@
 
     .badge:hover .skill-logo {
       stroke: var(--primary-foreground);
+    }
+
+    .skill-tooltip {
+      position: absolute;
+      max-width: 320px;
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      color: var(--card-foreground);
+      border-radius: var(--radius);
+      padding: 0.75rem 1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      z-index: 1000;
+      line-height: 1.6;
+      font-size: 0.9rem;
+      animation: fadeInUp 0.2s ease-out;
+    }
+    
+    .skill-tooltip-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--foreground);
+    }
+    
+    .skill-tooltip-header i {
+      font-size: 18px;
+      color: var(--primary);
+    }
+    
+    .skill-tooltip-header .skill-logo {
+      width: 18px;
+      height: 18px;
+      stroke: var(--primary);
+    }
+    
+    .skill-tooltip-title {
+      font-size: 0.95rem;
+    }
+    
+    .skill-tooltip-body {
+      color: var(--muted-foreground);
     }
 
     .card {
