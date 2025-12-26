@@ -8,6 +8,62 @@
     const contactForm = document.getElementById("contactForm");
     const successMessage = document.getElementById("successMessage");
     const yearSpan = document.getElementById("year");
+    const themeToggle = document.getElementById("themeToggle");
+
+    // Theme functionality
+    function initializeTheme() {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+
+    function toggleTheme(event) {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      // Get click position for animation
+      const rect = event.target.getBoundingClientRect();
+      const x = ((rect.left + rect.width / 2) / window.innerWidth) * 100;
+      const y = ((rect.top + rect.height / 2) / window.innerHeight) * 100;
+      
+      // Set CSS custom properties for animation origin
+      document.documentElement.style.setProperty('--click-x', `${x}%`);
+      document.documentElement.style.setProperty('--click-y', `${y}%`);
+      
+      // Add transition overlay
+      const overlay = document.getElementById('themeTransitionOverlay');
+      if (overlay) {
+        // Add a subtle scale animation to the toggle button
+        event.target.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          event.target.style.transform = '';
+        }, 150);
+        
+        overlay.classList.add('active');
+        
+        // Change theme after the overlay reaches peak visibility
+        setTimeout(() => {
+          document.documentElement.setAttribute('data-theme', newTheme);
+          localStorage.setItem('theme', newTheme);
+        }, 400);
+        
+        // Remove overlay after animation completes
+        setTimeout(() => {
+          overlay.classList.remove('active');
+        }, 1200);
+      } else {
+        // Fallback if overlay doesn't exist
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+      }
+    }
+
+    // Initialize theme on page load
+    initializeTheme();
+
+    // Theme toggle button event listener
+    if (themeToggle) {
+      themeToggle.addEventListener('click', toggleTheme);
+    }
 
     // Set current year
     yearSpan.textContent = new Date().getFullYear();

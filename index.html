@@ -12,10 +12,9 @@
   <link rel="stylesheet" href="style.css">
   
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="./Logo.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="./Logo.png">
-  <link rel="shortcut icon" href="./Logo.png">
-  <link rel="apple-touch-icon" href="./Logo.png">
+  <link rel="icon" type="image/svg+xml" href="./logo.svg">
+  <link rel="shortcut icon" href="./logo.svg">
+  <link rel="apple-touch-icon" href="./logo.svg">
 </head>
 <body>
   <!-- Header -->
@@ -23,7 +22,8 @@
     <div class="container">
       <div class="header-content">
         <a href="#home" class="logo">
-          <img src="./Logo.png" alt="Soumadeep Dey Logo" class="logo-img">
+          <img src="./logo.svg" alt="Soumadeep Dey Logo" class="logo-img logo-light">
+          <img src="./Logo.png" alt="Soumadeep Dey Logo" class="logo-img logo-dark">
         </a>
         
         <!-- Desktop Navigation -->
@@ -36,18 +36,31 @@
           <a href="#contact" class="nav-link">Contact</a>
         </nav>
         
-        <!-- Mobile Menu Button -->
-        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
-          <svg class="menu-icon" id="menuIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="4" x2="20" y1="12" y2="12"></line>
-            <line x1="4" x2="20" y1="6" y2="6"></line>
-            <line x1="4" x2="20" y1="18" y2="18"></line>
-          </svg>
-          <svg class="close-icon hidden" id="closeIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 6 6 18"></path>
-            <path d="m6 6 12 12"></path>
-          </svg>
-        </button>
+        <div class="header-actions">
+          <!-- Theme Toggle Button -->
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+            </svg>
+            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+          
+          <!-- Mobile Menu Button -->
+          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+            <svg class="menu-icon" id="menuIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" x2="20" y1="12" y2="12"></line>
+              <line x1="4" x2="20" y1="6" y2="6"></line>
+              <line x1="4" x2="20" y1="18" y2="18"></line>
+            </svg>
+            <svg class="close-icon hidden" id="closeIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 6 6 18"></path>
+              <path d="m6 6 12 12"></path>
+            </svg>
+          </button>
+        </div>
       </div>
       
       <!-- Mobile Navigation -->
@@ -141,7 +154,7 @@
         
         <div class="about-content">
           <div class="about-image">
-            <img src="./profile.JPG" alt="Soumadeep Dey">
+            <img src="./profile.JPG" alt="Soumadeep Dey" class="profile-img">
           </div>
           <div class="about-text">
             <h3>Soumadeep Dey</h3>
@@ -183,7 +196,6 @@
               <span class="badge" data-description="Object-oriented language for robust backend services.<br>Strong typing, performance, and mature ecosystem."><i class="devicon-java-plain" aria-hidden="true"></i> Java</span>
               <span class="badge" data-description="Standard API for database connectivity in Java.<br>Supports queries, transactions, and prepared statements."><svg class="skill-logo" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5V19A9 3 0 0 0 21 19V5"></path><path d="M3 12A9 3 0 0 0 21 12"></path></svg> JDBC</span>
               <span class="badge" data-description="ORM that maps Java objects to relational tables.<br>Reduces boilerplate and manages persistence lifecycle."><i class="devicon-hibernate-plain" aria-hidden="true"></i> Hibernate</span>
-              <span class="badge" data-description="Build and dependency management for Java projects.<br>Compiles, tests, packages, and handles transitive dependencies."><i class="devicon-maven-plain" aria-hidden="true"></i> Maven</span>
               <div class="spring-framework-container">
                 <span class="badge spring-badge" id="springBadge">
                   <i class="devicon-spring-plain" aria-hidden="true"></i> Spring Framework <span class="learning-box" id="springLearningBox"><span class="live-indicator"></span> Learning</span>
@@ -245,6 +257,32 @@
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+          
+          <div class="skill-category">
+            <div class="skill-header">
+              <svg class="skill-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+              </svg>
+              <h3>Build Tools</h3>
+            </div>
+            <div class="skill-badges">
+              <span class="badge" data-description="Build and dependency management for Java projects.<br>Compiles, tests, packages, and handles transitive dependencies."><i class="devicon-maven-plain" aria-hidden="true"></i> Maven</span>
+            </div>
+          </div>
+          
+          <div class="skill-category">
+            <div class="skill-header">
+              <svg class="skill-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
+                <path d="M3 12A9 3 0 0 0 21 12"></path>
+              </svg>
+              <h3>Databases</h3>
+            </div>
+            <div class="skill-badges">
               <span class="badge" data-description="Advanced open‑source relational database.<br>Rich SQL features, ACID transactions, and extensibility."><i class="devicon-postgresql-plain" aria-hidden="true"></i> PostgreSQL</span>
               <span class="badge" data-description="Lightweight Java SQL database for dev/testing.<br>Runs in‑memory or file mode, supports JDBC and standard SQL."><svg class="skill-logo" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"></ellipse><path d="M4 5v10a8 3 0 0 0 16 0V5"></path><path d="M4 10a8 3 0 0 0 16 0"></path></svg> H2 Database</span>
             </div>
@@ -354,20 +392,6 @@
             <div class="skill-badges">
               <span class="badge" data-description="Distributed version control to track changes.<br>Branching and merging enable collaborative workflows."><i class="devicon-git-plain" aria-hidden="true"></i> Git</span>
               <span class="badge" data-description="Platform for hosting Git repositories.<br>Pull requests, issues, and CI integrations for teamwork."><i class="devicon-github-original" aria-hidden="true"></i> GitHub</span>
-            </div>
-          </div>
-          
-          <div class="skill-category">
-            <div class="skill-header">
-              <svg class="skill-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
-                <path d="M2 12h20"></path>
-              </svg>
-              <h3>Other</h3>
-            </div>
-            <div class="skill-badges">
-              <span class="badge" data-description="Practice algorithms and problem‑solving under constraints.<br>Improves speed, accuracy, and coding discipline.">Competitive Programming <span class="learning-box"><span class="live-indicator"></span> Learning</span></span>
             </div>
           </div>
           
@@ -974,5 +998,8 @@
     </svg>
   </button>
   <script src="script.js"></script>
+  
+  <!-- Theme transition overlay -->
+  <div class="theme-transition-overlay" id="themeTransitionOverlay"></div>
 </body>
 </html>
