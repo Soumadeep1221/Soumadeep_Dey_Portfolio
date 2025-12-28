@@ -214,8 +214,16 @@
       filter: drop-shadow(0 0 15px rgba(139, 69, 19, 0.3));
     }
 
+    [data-theme="dark"] .logo:hover .logo-img {
+      filter: drop-shadow(0 0 15px rgba(0, 255, 136, 0.3));
+    }
+
     .logo:hover .logo-text {
       color: #7a3e11;
+    }
+
+    [data-theme="dark"] .logo:hover .logo-text {
+      color: #00cc6a;
     }
 
     .logo:hover {
@@ -902,6 +910,11 @@
       font-weight: 500;
     }
 
+    [data-theme="dark"] .badge {
+      background-color: rgba(0, 255, 136, 0.08);
+      border: 1px solid rgba(0, 255, 136, 0.2);
+    }
+
     .badge:hover {
       background-color: rgba(139, 69, 19, 0.18);
       color: var(--primary);
@@ -940,6 +953,141 @@
 
     .badge:hover .skill-logo {
       stroke: var(--primary);
+    }
+
+    /* Jakarta EE logo specific styling */
+    .jakarta-ee-logo {
+      width: 20px !important;
+      height: 20px !important;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
+    /* Light theme - convert to brown coffee colors */
+    .jakarta-ee-logo path[fill="#f89820"] {
+      fill: #8b4513;
+    }
+
+    .jakarta-ee-logo path[fill="#ffb84d"] {
+      fill: #a0927d;
+    }
+
+    .jakarta-ee-logo path[fill="#1f4e96"] {
+      fill: #4a2c1a;
+    }
+
+    /* Dark theme - adapt colors while keeping the essence */
+    [data-theme="dark"] .jakarta-ee-logo path[fill="#f89820"] {
+      fill: #00ff88;
+    }
+
+    [data-theme="dark"] .jakarta-ee-logo path[fill="#ffb84d"] {
+      fill: #00cc6a;
+    }
+
+    [data-theme="dark"] .jakarta-ee-logo path[fill="#1f4e96"] {
+      fill: #008855;
+    }
+
+    /* JSP logo specific styling */
+    .jsp-logo {
+      width: 20px !important;
+      height: 20px !important;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
+    /* Light theme - JSP logo colors */
+    .jsp-logo path[fill="#000000"] {
+      fill: #4a2c1a;
+    }
+
+    .jsp-logo text {
+      fill: #f5f5dc;
+    }
+
+    .jsp-logo rect[fill="#ffffff"] {
+      fill: #f5f5dc;
+    }
+
+    .jsp-logo rect[stroke="#000000"] {
+      stroke: #4a2c1a;
+    }
+
+    .jsp-logo ellipse[fill="#000000"] {
+      fill: #4a2c1a;
+    }
+
+    /* Dark theme - JSP logo colors */
+    [data-theme="dark"] .jsp-logo path[fill="#000000"] {
+      fill: #008855;
+    }
+
+    [data-theme="dark"] .jsp-logo text {
+      fill: #e5e5e5;
+    }
+
+    [data-theme="dark"] .jsp-logo rect[fill="#ffffff"] {
+      fill: #e5e5e5;
+    }
+
+    [data-theme="dark"] .jsp-logo rect[stroke="#000000"] {
+      stroke: #008855;
+    }
+
+    [data-theme="dark"] .jsp-logo ellipse[fill="#000000"] {
+      fill: #008855;
+    }
+
+    /* JSP logo grouped elements */
+    .jsp-logo g path[fill="#000000"] {
+      fill: #4a2c1a;
+    }
+
+    .jsp-logo g ellipse[fill="#000000"] {
+      fill: #4a2c1a;
+    }
+
+    [data-theme="dark"] .jsp-logo g path[fill="#000000"] {
+      fill: #008855;
+    }
+
+    [data-theme="dark"] .jsp-logo g ellipse[fill="#000000"] {
+      fill: #008855;
+    }
+
+    /* Thymeleaf logo specific styling */
+    .thymeleaf-logo {
+      width: 20px !important;
+      height: 20px !important;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
+    /* Light theme - Thymeleaf logo colors */
+    .thymeleaf-logo rect[fill="#005f0f"] {
+      fill: #8b4513;
+    }
+
+    .thymeleaf-logo path[fill="#ffffff"] {
+      fill: #f5f5dc;
+    }
+
+    .thymeleaf-logo path[fill="#999999"] {
+      fill: #a0927d;
+    }
+
+    /* Dark theme - Thymeleaf logo colors */
+    [data-theme="dark"] .thymeleaf-logo rect[fill="#005f0f"] {
+      fill: #00ff88;
+    }
+
+    [data-theme="dark"] .thymeleaf-logo path[fill="#ffffff"] {
+      fill: #1a1a1a;
+    }
+
+    [data-theme="dark"] .thymeleaf-logo path[fill="#999999"] {
+      fill: #404040;
     }
 
     .skill-tooltip {
@@ -1445,6 +1593,10 @@
       font-weight: 500;
     }
 
+    [data-theme="dark"] .tag {
+      background-color: rgba(0, 255, 136, 0.05);
+    }
+
     .tag:hover {
       border-color: var(--primary);
       color: var(--primary);
@@ -1518,9 +1670,17 @@
       transition: var(--transition);
     }
 
+    [data-theme="dark"] .achievement-icon {
+      background-color: rgba(0, 255, 136, 0.1);
+    }
+
     .achievement-card:hover .achievement-icon {
       background-color: rgba(139, 69, 19, 0.2);
       transform: scale(1.05);
+    }
+
+    [data-theme="dark"] .achievement-card:hover .achievement-icon {
+      background-color: rgba(0, 255, 136, 0.2);
     }
 
     .achievement-content h3 {
@@ -1557,6 +1717,18 @@
 
     .star.empty {
       color: rgba(160, 160, 184, 0.3);
+    }
+
+    /* Light theme - make empty stars more visible */
+    .star.empty {
+      color: rgba(139, 69, 19, 0.3);
+      fill: rgba(139, 69, 19, 0.3);
+    }
+
+    /* Dark theme - keep empty stars visible */
+    [data-theme="dark"] .star.empty {
+      color: rgba(0, 255, 136, 0.3);
+      fill: rgba(0, 255, 136, 0.3);
     }
 
     .achievement-description {
@@ -1623,6 +1795,11 @@
       background-color: rgba(139, 69, 19, 0.08);
       transition: var(--transition);
       border: 1px solid rgba(139, 69, 19, 0.15);
+    }
+
+    [data-theme="dark"] .contact-link-icon {
+      background-color: rgba(0, 255, 136, 0.08);
+      border: 1px solid rgba(0, 255, 136, 0.15);
     }
 
     .contact-link:hover .contact-link-icon {
@@ -1783,27 +1960,14 @@
       overflow: hidden;
     }
 
-    .form-submit-btn::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.2);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s, height 0.6s;
-    }
-
-    .form-submit-btn:hover::before {
-      width: 300px;
-      height: 300px;
-    }
-
     .form-submit-btn:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 24px rgba(139, 69, 19, 0.3);
+    }
+
+    [data-theme="dark"] .form-submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 255, 136, 0.3);
     }
 
     .success-message {
