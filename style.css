@@ -1090,6 +1090,64 @@
       fill: #404040;
     }
 
+    /* Lombok logo specific styling */
+    .lombok-logo {
+      width: 20px !important;
+      height: 20px !important;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
+    /* Light theme - Lombok logo colors */
+    .lombok-logo path[fill="#c53929"] {
+      fill: #8b4513;
+    }
+
+    .lombok-logo path[fill="#e74c3c"] {
+      fill: #a0927d;
+    }
+
+    .lombok-logo path[fill="#a93226"] {
+      fill: #6d4c41;
+    }
+
+    .lombok-logo ellipse[fill="#7cb342"] {
+      fill: #4a2c1a;
+    }
+
+    .lombok-logo path[fill="#8bc34a"] {
+      fill: #5d4037;
+    }
+
+    .lombok-logo path[fill="#9ccc65"] {
+      fill: #795548;
+    }
+
+    /* Dark theme - Lombok logo colors */
+    [data-theme="dark"] .lombok-logo path[fill="#c53929"] {
+      fill: #00ff88;
+    }
+
+    [data-theme="dark"] .lombok-logo path[fill="#e74c3c"] {
+      fill: #4caf50;
+    }
+
+    [data-theme="dark"] .lombok-logo path[fill="#a93226"] {
+      fill: #2e7d32;
+    }
+
+    [data-theme="dark"] .lombok-logo ellipse[fill="#7cb342"] {
+      fill: #00cc6a;
+    }
+
+    [data-theme="dark"] .lombok-logo path[fill="#8bc34a"] {
+      fill: #388e3c;
+    }
+
+    [data-theme="dark"] .lombok-logo path[fill="#9ccc65"] {
+      fill: #66bb6a;
+    }
+
     .skill-tooltip {
       position: absolute;
       max-width: 320px;
