@@ -1148,6 +1148,48 @@
       fill: #66bb6a;
     }
 
+    /* Postman logo specific styling */
+    .postman-logo {
+      width: 20px !important;
+      height: 20px !important;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
+    /* Light theme - Postman logo colors */
+    .postman-logo ellipse[fill="#ff6c37"] {
+      fill: #8b4513;
+    }
+
+    .postman-logo ellipse[fill="#ffffff"] {
+      fill: #f5f5dc;
+    }
+
+    .postman-logo path[fill="#ff6c37"] {
+      fill: #8b4513;
+    }
+
+    .postman-logo ellipse[stroke="#ff6c37"] {
+      stroke: #8b4513;
+    }
+
+    /* Dark theme - Postman logo colors */
+    [data-theme="dark"] .postman-logo ellipse[fill="#ff6c37"] {
+      fill: #00ff88;
+    }
+
+    [data-theme="dark"] .postman-logo ellipse[fill="#ffffff"] {
+      fill: #1a1a1a;
+    }
+
+    [data-theme="dark"] .postman-logo path[fill="#ff6c37"] {
+      fill: #00ff88;
+    }
+
+    [data-theme="dark"] .postman-logo ellipse[stroke="#ff6c37"] {
+      stroke: #00ff88;
+    }
+
     .skill-tooltip {
       position: absolute;
       max-width: 320px;
