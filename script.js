@@ -606,3 +606,44 @@
       window.addEventListener('scroll', hideTooltip, { passive: true });
       window.addEventListener('resize', hideTooltip);
     })();
+
+// Coming Soon Modal Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const comingSoonModal = document.getElementById('comingSoonModal');
+  const comingSoonOverlay = document.getElementById('comingSoonOverlay');
+  const comingSoonClose = document.getElementById('comingSoonClose');
+  const visitProjectButtons = document.querySelectorAll('.project-links .btn-primary');
+
+  // Function to show coming soon modal
+  function showComingSoonModal() {
+    comingSoonModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+  }
+
+  // Function to hide coming soon modal
+  function hideComingSoonModal() {
+    comingSoonModal.classList.add('hidden');
+    document.body.style.overflow = ''; // Restore scrolling
+  }
+
+  // Add click event listeners to all "Visit Project" buttons
+  visitProjectButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault(); // Prevent default link behavior
+      showComingSoonModal();
+    });
+  });
+
+  // Close modal when clicking the close button
+  comingSoonClose.addEventListener('click', hideComingSoonModal);
+
+  // Close modal when clicking the overlay
+  comingSoonOverlay.addEventListener('click', hideComingSoonModal);
+
+  // Close modal when pressing Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && !comingSoonModal.classList.contains('hidden')) {
+      hideComingSoonModal();
+    }
+  });
+});
