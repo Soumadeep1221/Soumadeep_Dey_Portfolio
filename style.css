@@ -38,6 +38,66 @@
       --border: #333333;
     }
 
+    /* Custom Scrollbar - Light Theme */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #c4b5a0;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #8b4513, #6d4c41);
+      border-radius: 10px;
+      border: 2px solid #c4b5a0;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #a0522d, #8b4513);
+    }
+
+    /* Firefox Scrollbar - Light Theme */
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: #8b4513 #c4b5a0;
+    }
+
+    /* Custom Scrollbar - Dark Theme */
+    html[data-theme="dark"]::-webkit-scrollbar-track {
+      background: #1a1a1a !important;
+    }
+
+    html[data-theme="dark"]::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #00ff88, #00b368) !important;
+      border: 2px solid #1a1a1a !important;
+    }
+
+    html[data-theme="dark"]::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #33ffaa, #00ff88) !important;
+    }
+
+    /* Firefox Scrollbar - Dark Theme */
+    html[data-theme="dark"] {
+      scrollbar-color: #00ff88 #1a1a1a;
+    }
+
+    /* Cursor - Light Theme */
+    html {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M4 4 L4 28 L10 22 L14 28 L18 26 L14 20 L22 20 Z' fill='%238b4513'/%3E%3C/svg%3E") 4 4, auto;
+    }
+
+    /* Cursor - Dark Theme */
+    html[data-theme="dark"] {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M4 4 L4 28 L10 22 L14 28 L18 26 L14 20 L22 20 Z' fill='%2300ff88'/%3E%3C/svg%3E") 4 4, auto;
+    }
+
+    /* Default pointer cursor for clickable elements */
+    a, button, .btn, .badge, .card, .project-card, .achievement-card, .nav-link, .nav-link-mobile, .theme-toggle, .icon-btn, input[type="submit"], .spring-badge, .dsa-badge, label, .tag {
+      cursor: pointer;
+    }
+
     html {
       scroll-behavior: smooth;
     }
@@ -1629,9 +1689,34 @@
       color: var(--primary);
     }
 
+    .project-period {
+      font-size: 0.875rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
     .project-description {
       color: var(--muted-foreground);
       margin-bottom: 1rem;
+    }
+
+    .project-description-list {
+      color: var(--muted-foreground);
+      margin-bottom: 1rem;
+      padding-left: 1.25rem;
+      list-style-type: disc;
+      list-style-position: outside;
+    }
+
+    .project-description-list li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+      display: list-item;
+    }
+
+    .project-description-list li:last-child {
+      margin-bottom: 0;
     }
 
     .project-tags {
@@ -1674,6 +1759,14 @@
       flex-wrap: wrap;
       align-items: center;
       flex-shrink: 0;
+      margin-top: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .project-links {
+        margin-top: 0;
+        align-self: flex-start;
+      }
     }
 
 .project-links .btn {
