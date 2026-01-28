@@ -524,6 +524,7 @@
       if (!badges.length) return;
       
       let tooltipEl = null;
+      let currentActiveBadge = null; // Track which badge is currently showing tooltip
       
       function ensureTooltip() {
         if (tooltipEl) return tooltipEl;
@@ -538,6 +539,11 @@
         if (tooltipEl) {
           tooltipEl.classList.add('hidden');
           tooltipEl.innerHTML = '';
+        }
+        // Remove active state from current badge
+        if (currentActiveBadge) {
+          currentActiveBadge.classList.remove('tooltip-active');
+          currentActiveBadge = null;
         }
       }
       
@@ -565,6 +571,21 @@
         
         tip.style.top = `${top}px`;
         tip.style.left = `${left}px`;
+        
+        // Set active state
+        currentActiveBadge = target;
+        target.classList.add('tooltip-active');
+      }
+      
+      function toggleTooltip(badge, html) {
+        // If clicking the same badge that's currently active, hide tooltip
+        if (currentActiveBadge === badge) {
+          hideTooltip();
+        } else {
+          // Hide current tooltip and show new one
+          hideTooltip();
+          showTooltip(badge, html);
+        }
       }
       
       badges.forEach(badge => {
@@ -583,28 +604,59 @@
         
         badge.setAttribute('tabindex', '0');
         badge.setAttribute('role', 'button');
+        badge.setAttribute('aria-expanded', 'false');
+        
+        // Click handler with toggle functionality
         badge.addEventListener('click', (e) => {
           e.stopPropagation();
           const html = buildHeadingHTML() + `<div class="skill-tooltip-body">${desc}</div>`;
-          showTooltip(badge, html);
+          toggleTooltip(badge, html);
+          
+          // Update aria-expanded
+          badge.setAttribute('aria-expanded', currentActiveBadge === badge ? 'true' : 'false');
         });
+        
+        // Keyboard handler with toggle functionality
         badge.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             const html = buildHeadingHTML() + `<div class="skill-tooltip-body">${desc}</div>`;
-            showTooltip(badge, html);
+            toggleTooltip(badge, html);
+            
+            // Update aria-expanded
+            badge.setAttribute('aria-expanded', currentActiveBadge === badge ? 'true' : 'false');
           }
           if (e.key === 'Escape') {
             hideTooltip();
+            badge.setAttribute('aria-expanded', 'false');
           }
         });
       });
       
+      // Close tooltip when clicking outside
       document.addEventListener('click', (e) => {
-        if (tooltipEl && !tooltipEl.contains(e.target)) hideTooltip();
+        if (tooltipEl && !tooltipEl.contains(e.target) && currentActiveBadge && !currentActiveBadge.contains(e.target)) {
+          hideTooltip();
+          if (currentActiveBadge) {
+            currentActiveBadge.setAttribute('aria-expanded', 'false');
+          }
+        }
       });
-      window.addEventListener('scroll', hideTooltip, { passive: true });
-      window.addEventListener('resize', hideTooltip);
+      
+      // Close tooltip on scroll and resize
+      window.addEventListener('scroll', () => {
+        hideTooltip();
+        if (currentActiveBadge) {
+          currentActiveBadge.setAttribute('aria-expanded', 'false');
+        }
+      }, { passive: true });
+      
+      window.addEventListener('resize', () => {
+        hideTooltip();
+        if (currentActiveBadge) {
+          currentActiveBadge.setAttribute('aria-expanded', 'false');
+        }
+      });
     })();
 
 // Coming Soon Modal Functionality
@@ -682,6 +734,26 @@ document.addEventListener('DOMContentLoaded', function() {
       button.addEventListener('touchend', function(e) {
         e.preventDefault();
         this.click();
+      });
+    });
+
+    // Improve skill badge tooltip behavior on mobile
+    const skillBadges = document.querySelectorAll('.skill-badges .badge');
+    skillBadges.forEach(badge => {
+      // Add longer touch feedback for skill badges
+      badge.addEventListener('touchstart', function() {
+        this.classList.add('touch-active');
+      }, { passive: true });
+      
+      badge.addEventListener('touchend', function() {
+        setTimeout(() => {
+          this.classList.remove('touch-active');
+        }, 200); // Slightly longer for skill badges
+      }, { passive: true });
+      
+      // Prevent context menu on long press for skill badges
+      badge.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
       });
     });
   }
