@@ -83,20 +83,7 @@
       scrollbar-color: #00ff88 #1a1a1a;
     }
 
-    /* Cursor - Light Theme */
-    html {
-      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M4 4 L4 28 L10 22 L14 28 L18 26 L14 20 L22 20 Z' fill='%238b4513'/%3E%3C/svg%3E") 4 4, auto;
-    }
 
-    /* Cursor - Dark Theme */
-    html[data-theme="dark"] {
-      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M4 4 L4 28 L10 22 L14 28 L18 26 L14 20 L22 20 Z' fill='%2300ff88'/%3E%3C/svg%3E") 4 4, auto;
-    }
-
-    /* Default pointer cursor for clickable elements */
-    a, button, .btn, .badge, .card, .project-card, .achievement-card, .nav-link, .nav-link-mobile, .theme-toggle, .icon-btn, input[type="submit"], .spring-badge, .dsa-badge, label, .tag {
-      cursor: pointer;
-    }
 
     html {
       scroll-behavior: smooth;
@@ -1266,9 +1253,11 @@
     }
 
     .badge.tooltip-active i,
-    .badge.tooltip-active .skill-logo {
+    .badge.tooltip-active .skill-logo,
+    .badge.tooltip-active .jsp-logo-text {
       color: var(--primary-foreground);
       stroke: var(--primary-foreground);
+      border-color: var(--primary-foreground);
     }
 
     .card {
