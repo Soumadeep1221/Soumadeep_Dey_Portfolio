@@ -109,6 +109,7 @@
         "Spring AOP",
         "Spring Security",
         "JWT & OAuth2",
+        "React",
         "Docker",
         "Spring AI",
         "Microservices Basics"
@@ -664,7 +665,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const comingSoonModal = document.getElementById('comingSoonModal');
   const comingSoonOverlay = document.getElementById('comingSoonOverlay');
   const comingSoonClose = document.getElementById('comingSoonClose');
-  const visitProjectButtons = document.querySelectorAll('.project-links .btn-primary');
+  // Only select buttons that have # or javascript:void(0) as href (placeholder links)
+  const visitProjectButtons = document.querySelectorAll('.project-links a[href="#"], .project-links a[href="javascript:void(0)"]');
 
   // Function to show coming soon modal
   function showComingSoonModal() {
@@ -678,7 +680,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.style.overflow = ''; // Restore scrolling
   }
 
-  // Add click event listeners to all "Visit Project" buttons
+  // Add click event listeners to placeholder "Visit Project" buttons only
   visitProjectButtons.forEach(button => {
     button.addEventListener('click', function(e) {
       e.preventDefault(); // Prevent default link behavior
@@ -687,14 +689,18 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Close modal when clicking the close button
-  comingSoonClose.addEventListener('click', hideComingSoonModal);
+  if (comingSoonClose) {
+    comingSoonClose.addEventListener('click', hideComingSoonModal);
+  }
 
   // Close modal when clicking the overlay
-  comingSoonOverlay.addEventListener('click', hideComingSoonModal);
+  if (comingSoonOverlay) {
+    comingSoonOverlay.addEventListener('click', hideComingSoonModal);
+  }
 
   // Close modal when pressing Escape key
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && !comingSoonModal.classList.contains('hidden')) {
+    if (e.key === 'Escape' && comingSoonModal && !comingSoonModal.classList.contains('hidden')) {
       hideComingSoonModal();
     }
   });
